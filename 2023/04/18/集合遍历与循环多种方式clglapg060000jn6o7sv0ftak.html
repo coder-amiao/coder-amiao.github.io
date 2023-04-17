@@ -1,0 +1,411 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="三时">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.3.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://example.com">
+    <!--SEO-->
+
+<meta name="keywords" content="List,Map" />
+
+
+<meta name="description" content="前言Java中集合是非常常用非常重要的 ，应用是十分广泛的，作为集合这种数据结构，遍历循环方式也有很多种我们可以梳理总结不同的遍历方式，方便理解和运用
+
+List 遍历方式
+List继承了Col..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    集合遍历与循环多种方式 |
+    
+    三时
+</title>
+
+<link rel="alternate" href="/atom.xml" title="三时" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+
+
+
+    
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    https://hexo-theme-snippet-1251680922.cos.ap-beijing.myqcloud.com/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='程序员三时'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                乐于分享，爱好码字
+            </h2>
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://example.com">
+                        三时</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/工具/"><i class="fa "></i>
+                                工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/运维/"><i class="fa "></i>
+                                运维</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/AI-ChatGPT/"><i class="fa "></i>
+                                AI-ChatGPT</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="集合遍历与循环多种方式">
+            
+            集合遍历与循环多种方式
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a> <a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/Java/">Java</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/List/" rel="tag">List</a> <a class="tag-none-link" href="/tags/Map/" rel="tag">Map</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2023/04/18</span>
+    </span>
+    
+    <span class="fa-wrap">
+        <i class="fa fa-eye"></i>
+        <span id="busuanzi_value_page_pv"></span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1><span id="前言">前言</span></h1><p><code>Java</code>中集合是非常常用非常重要的 ，应用是十分广泛的，作为集合这种数据结构，遍历循环方式也有很多种我们可以梳理总结不同的遍历方式，方便理解和运用</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9de64203dd634961b07b24cb839c32c9~tplv-k3u1fbpfcp-zoom-1.image"></p>
+<h1><span id="list-遍历方式">List 遍历方式</span></h1><ol>
+<li><p>List继承了Collection，是有序的列表。</p>
+</li>
+<li><p>实现类有ArrayList、LinkedList、Vector、Stack等</p>
+<ol>
+<li><p>ArrayList是基于数组实现的，是一个数组队列。可以动态的增加容量！</p>
+</li>
+<li><p>LinkedList是基于链表实现的，是一个双向循环列表。可以被当做堆栈使用！</p>
+</li>
+<li><p>Vector是基于数组实现的，是一个矢量队列，是线程安全的！</p>
+</li>
+<li><p>Stack是基于数组实现的，是栈，它继承与Vector，特性是FILO（先进后出）！</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>所有list集合都是迭代器<code>Iterator</code>子类也都统称迭代器，可以通过迭代器方式去循环便利</p>
+<ol>
+<li>第一种方式 迭代器遍历<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">List a= <span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">       a.add(<span class="number">1</span>);</span><br><span class="line">       a.add(<span class="number">2</span>);</span><br><span class="line">       a.add(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//获取迭代器</span></span><br><span class="line">       Iterator b=a.iterator();</span><br><span class="line">       <span class="comment">//判断是否有下一个值</span></span><br><span class="line">       <span class="keyword">while</span> (b.hasNext())&#123;</span><br><span class="line">           <span class="comment">//取出这个值</span></span><br><span class="line">           System.out.println(b.next());</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure></li>
+<li>第二种方式</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List a= <span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        a.add(<span class="number">1</span>);</span><br><span class="line">        a.add(<span class="number">2</span>);</span><br><span class="line">        a.add(<span class="number">3</span>);</span><br><span class="line">        <span class="keyword">for</span>(Iterator iterator=a.iterator();iterator.hasNext();)&#123;</span><br><span class="line">            System.out.println(iterator.next());</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>第三种方式 foreach 遍历</li>
+</ol>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List a= <span class="built_in">new</span> ArrayList();</span><br><span class="line">       a.<span class="keyword">add</span>(<span class="number">1</span>);</span><br><span class="line">       a.<span class="keyword">add</span>(<span class="number">2</span>);</span><br><span class="line">       a.<span class="keyword">add</span>(<span class="number">3</span>);</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">Object</span> o:a)&#123;</span><br><span class="line">           <span class="keyword">System</span>.<span class="keyword">out</span>.println(o);</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>第四种方式 fori 遍历</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List a= <span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        a.add(<span class="number">1</span>);</span><br><span class="line">        a.add(<span class="number">2</span>);</span><br><span class="line">        a.add(<span class="number">3</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;a.size();i++)&#123;</span><br><span class="line">            System.out.println(a.get(i));</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="map遍历方式">Map遍历方式</span></h1><ol>
+<li>按照key方式来遍历</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Map a=<span class="keyword">new</span> <span class="title class_">HashMap</span>();</span><br><span class="line">      a.put(<span class="string">&quot;a&quot;</span>,<span class="number">1</span>);</span><br><span class="line">      a.put(<span class="string">&quot;b&quot;</span>,<span class="number">2</span>);</span><br><span class="line">      a.put(<span class="string">&quot;c&quot;</span>,<span class="number">3</span>);</span><br><span class="line">      <span class="comment">//获取所以key</span></span><br><span class="line">      Set key=a.keySet();</span><br><span class="line">      <span class="keyword">for</span>(Object o:key)&#123;</span><br><span class="line">          <span class="comment">//通过key 来获取所有值</span></span><br><span class="line">          System.out.println(a.get(o));</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>通过Map.entrySet使用iterator遍历key和value</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Map a=<span class="keyword">new</span> <span class="title class_">HashMap</span>();</span><br><span class="line">      a.put(<span class="string">&quot;a&quot;</span>,<span class="number">1</span>);</span><br><span class="line">      a.put(<span class="string">&quot;b&quot;</span>,<span class="number">2</span>);</span><br><span class="line">      a.put(<span class="string">&quot;c&quot;</span>,<span class="number">3</span>);</span><br><span class="line">      <span class="comment">// 获取Iterator</span></span><br><span class="line">      Iterator&lt;Map.Entry&lt;String, Integer&gt;&gt; it = a.entrySet().iterator();</span><br><span class="line">      <span class="comment">//遍历</span></span><br><span class="line">       <span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">           Map.Entry&lt;String, Integer&gt; entry = it.next();</span><br><span class="line">           System.out.println(<span class="string">&quot;key= &quot;</span> + entry.getKey() + <span class="string">&quot; and value= &quot;</span> + entry.getValue());</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>通过Map.entrySet遍历key和value，推荐，尤其是容量大时</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Map a=<span class="keyword">new</span> <span class="title class_">HashMap</span>();</span><br><span class="line">       a.put(<span class="string">&quot;a&quot;</span>,<span class="number">1</span>);</span><br><span class="line">       a.put(<span class="string">&quot;b&quot;</span>,<span class="number">2</span>);</span><br><span class="line">       a.put(<span class="string">&quot;c&quot;</span>,<span class="number">3</span>);</span><br><span class="line">        <span class="keyword">for</span> ( Object o : a.entrySet()) &#123;</span><br><span class="line">            <span class="comment">//Map.entry&lt;Integer,String&gt; 映射项（键-值对）  有几个方法：用上面的名字entry</span></span><br><span class="line">            <span class="comment">//entry.getKey() ;entry.getValue(); entry.setValue();</span></span><br><span class="line">            <span class="comment">//map.entrySet()  返回此映射中包含的映射关系的 Set视图。</span></span><br><span class="line">            Map.Entry&lt;String,Integer&gt; d=(Map.Entry&lt;String,Integer&gt; )o;</span><br><span class="line">            System.out.println(<span class="string">&quot;key= &quot;</span> + d.getKey() + <span class="string">&quot; and value= &quot;</span> + d.getValue());</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>通过Map.values()遍历所有的value，但不能遍历key</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Map</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>();</span><br><span class="line">       a.put(<span class="string">&quot;a&quot;</span>, <span class="number">1</span>);</span><br><span class="line">       a.put(<span class="string">&quot;b&quot;</span>, <span class="number">2</span>);</span><br><span class="line">       a.put(<span class="string">&quot;c&quot;</span>, <span class="number">3</span>);</span><br><span class="line">       <span class="keyword">for</span> (Object o : a.values()) &#123;</span><br><span class="line">           System.out.println(o);</span><br><span class="line"></span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="stream流api遍历">Stream流API遍历</span></h1><p> stream集合遍历forEach</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; a=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">a.add(<span class="string">&quot;judy&quot;</span>);</span><br><span class="line">a.add(<span class="string">&quot;Tom&quot;</span>);</span><br><span class="line"><span class="comment">//lambda表达式</span></span><br><span class="line">a.stream().forEach(s -&gt; System.out.println(s));</span><br><span class="line"></span><br><span class="line">a.stream().forEach(s -&gt; &#123;</span><br><span class="line">    System.out.println(s);</span><br><span class="line">    System.out.println(<span class="number">2</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="https://i.328888.xyz/2023/04/18/izHAT8.md.jpeg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="https://i.328888.xyz/2023/04/18/izHidv.md.jpeg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">三时博客</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+    <a href="/2023/04/17/%E8%BD%BB%E6%9D%BE%E4%B8%8A%E6%89%8BSpringBoot+SpringSecurity+JWT%E5%AE%9ERESTfulAPI%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E5%AE%9E%E6%88%98clglapg0h0009jn6o2ey3azjp.html" class="next-post btn btn-default" title='轻松上手SpringBoot+SpringSecurity+JWT实RESTfulAPI权限控制实战'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            轻松上手SpringBoot+SpringSecurity+JWT实RESTfulAPI权限控制实战</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+    <link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN",
+    clientID: "985561eec7cda584c78f",
+    clientSecret: "3a51b166348d5c8338594e46d890d0bb3ca29066",
+    repo: "coder-amiao.github.io",
+    owner: "coder-amiao",
+    admin: ["coder-amiao"],
+    id: md5(location.pathname),
+    distractionFreeMode: true
+});
+gitalk.render('gitalk-container');
+</script>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">List 遍历方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">Map遍历方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">Stream流API遍历</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+    访问量:
+    <strong id="busuanzi_value_site_pv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    &nbsp; | &nbsp;
+    访客数:
+    <strong id="busuanzi_value_site_uv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2023
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        程序员三时</a>
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
+
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.js"></script>
+<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="/js/clipboard_use.js"></script>
+</html>
