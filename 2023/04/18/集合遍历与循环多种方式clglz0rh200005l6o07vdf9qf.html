@@ -190,9 +190,9 @@ List继承了Col..." />
     </div>
     
     <div class="post-body post-content">
-        <h1><span id="前言">前言</span></h1><p><code>Java</code>中集合是非常常用非常重要的 ，应用是十分广泛的，作为集合这种数据结构，遍历循环方式也有很多种我们可以梳理总结不同的遍历方式，方便理解和运用</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>Java</code>中集合是非常常用非常重要的 ，应用是十分广泛的，作为集合这种数据结构，遍历循环方式也有很多种我们可以梳理总结不同的遍历方式，方便理解和运用</p>
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9de64203dd634961b07b24cb839c32c9~tplv-k3u1fbpfcp-zoom-1.image"></p>
-<h1><span id="list-遍历方式">List 遍历方式</span></h1><ol>
+<h1 id="List-遍历方式"><a href="#List-遍历方式" class="headerlink" title="List 遍历方式"></a>List 遍历方式</h1><ol>
 <li><p>List继承了Collection，是有序的列表。</p>
 </li>
 <li><p>实现类有ArrayList、LinkedList、Vector、Stack等</p>
@@ -222,7 +222,7 @@ List继承了Col..." />
 <li>第四种方式 fori 遍历</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List a= <span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        a.add(<span class="number">1</span>);</span><br><span class="line">        a.add(<span class="number">2</span>);</span><br><span class="line">        a.add(<span class="number">3</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;a.size();i++)&#123;</span><br><span class="line">            System.out.println(a.get(i));</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<h1><span id="map遍历方式">Map遍历方式</span></h1><ol>
+<h1 id="Map遍历方式"><a href="#Map遍历方式" class="headerlink" title="Map遍历方式"></a>Map遍历方式</h1><ol>
 <li>按照key方式来遍历</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Map a=<span class="keyword">new</span> <span class="title class_">HashMap</span>();</span><br><span class="line">      a.put(<span class="string">&quot;a&quot;</span>,<span class="number">1</span>);</span><br><span class="line">      a.put(<span class="string">&quot;b&quot;</span>,<span class="number">2</span>);</span><br><span class="line">      a.put(<span class="string">&quot;c&quot;</span>,<span class="number">3</span>);</span><br><span class="line">      <span class="comment">//获取所以key</span></span><br><span class="line">      Set key=a.keySet();</span><br><span class="line">      <span class="keyword">for</span>(Object o:key)&#123;</span><br><span class="line">          <span class="comment">//通过key 来获取所有值</span></span><br><span class="line">          System.out.println(a.get(o));</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
@@ -239,7 +239,7 @@ List继承了Col..." />
 <li>通过Map.values()遍历所有的value，但不能遍历key</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Map</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>();</span><br><span class="line">       a.put(<span class="string">&quot;a&quot;</span>, <span class="number">1</span>);</span><br><span class="line">       a.put(<span class="string">&quot;b&quot;</span>, <span class="number">2</span>);</span><br><span class="line">       a.put(<span class="string">&quot;c&quot;</span>, <span class="number">3</span>);</span><br><span class="line">       <span class="keyword">for</span> (Object o : a.values()) &#123;</span><br><span class="line">           System.out.println(o);</span><br><span class="line"></span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
-<h1><span id="stream流api遍历">Stream流API遍历</span></h1><p> stream集合遍历forEach</p>
+<h1 id="Stream流API遍历"><a href="#Stream流API遍历" class="headerlink" title="Stream流API遍历"></a>Stream流API遍历</h1><p> stream集合遍历forEach</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; a=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">a.add(<span class="string">&quot;judy&quot;</span>);</span><br><span class="line">a.add(<span class="string">&quot;Tom&quot;</span>);</span><br><span class="line"><span class="comment">//lambda表达式</span></span><br><span class="line">a.stream().forEach(s -&gt; System.out.println(s));</span><br><span class="line"></span><br><span class="line">a.stream().forEach(s -&gt; &#123;</span><br><span class="line">    System.out.println(s);</span><br><span class="line">    System.out.println(<span class="number">2</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     </div>
@@ -296,7 +296,7 @@ List继承了Col..." />
             文章目录
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">List 遍历方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">Map遍历方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">Stream流API遍历</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#List-%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">List 遍历方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Map%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">Map遍历方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Stream%E6%B5%81API%E9%81%8D%E5%8E%86"><span class="toc-number">4.</span> <span class="toc-text">Stream流API遍历</span></a></li></ol>
         
     </div>
 </aside>
