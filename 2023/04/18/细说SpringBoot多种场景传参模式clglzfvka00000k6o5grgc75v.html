@@ -1,0 +1,373 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="三时">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.3.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://example.com">
+    <!--SEO-->
+
+<meta name="keywords" content="SpringBoot" />
+
+
+<meta name="description" content="web技术我们知道常见的web技术也就是网站开发，分为静态网站，和动态网站，动态网站技术常见的有三种，分别是 jsp java web，asp c# web,php web但是它们对应请求req..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    细说SpringBoot多种场景传参模式 |
+    
+    三时
+</title>
+
+<link rel="alternate" href="/atom.xml" title="三时" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+
+
+
+    
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    https://hexo-theme-snippet-1251680922.cos.ap-beijing.myqcloud.com/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='程序员三时'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                乐于分享，爱好码字
+            </h2>
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://example.com">
+                        三时</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/工具/"><i class="fa "></i>
+                                工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/运维/"><i class="fa "></i>
+                                运维</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/AI-ChatGPT/"><i class="fa "></i>
+                                AI-ChatGPT</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="细说SpringBoot多种场景传参模式">
+            
+            细说SpringBoot多种场景传参模式
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a> <a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/Java/">Java</a> <a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/Java/SpringBoot/">SpringBoot</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2023/04/18</span>
+    </span>
+    
+    <span class="fa-wrap">
+        <i class="fa fa-eye"></i>
+        <span id="busuanzi_value_page_pv"></span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="web技术"><a href="#web技术" class="headerlink" title="web技术"></a>web技术</h1><p>我们知道常见的web技术也就是网站开发，分为静态网站，和动态网站，动态网站技术常见的有三种，分别是 <code>jsp java web</code>，<code>asp c# web</code>,<code>php web</code>但是它们对应请求<code>request</code>,响应<code>response</code> 都是一样的我们用java web开发动态网站用的mvc框架就是，<code>springmvc</code>，当然我们现在用的是<code>springboot </code>它只是对spirng全家桶的一个整合框架，他本质不是一个新的框架，内部还是spirng+springmvc</p>
+<h1 id="多种传参方式"><a href="#多种传参方式" class="headerlink" title="多种传参方式"></a>多种传参方式</h1><h2 id="传统参数传递"><a href="#传统参数传递" class="headerlink" title="传统参数传递"></a>传统参数传递</h2><p>我们知道controller方法中会帮我注入HttpServletRequest对象，我们可以通过<br><code>request.getParameter(&quot;参数名&quot;)</code>来直接获取参数，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/test01&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ModelAndView <span class="title function_">test01</span><span class="params">(HttpServletRequest request)</span>&#123;</span><br><span class="line">      <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">      <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;password&quot;</span>);</span><br><span class="line"></span><br><span class="line">      System.out.println(username);</span><br><span class="line">      System.out.println(password);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="简单类型参数映射"><a href="#简单类型参数映射" class="headerlink" title="简单类型参数映射"></a>简单类型参数映射</h2><ol>
+<li><p>如果请求参数和Controller方法的形参同名，可以直接接收</p>
+</li>
+<li><p>如果请求参数和Controller方法的形参不同名，可以使用@RequestParam注解贴在形参前，设置对应的参数名称</p>
+</li>
+</ol>
+<hr>
+<p><strong>注意</strong>这里只能是<code>基本数据类型</code>比如string，int，long，boolean等类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/test02_1&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ModelAndView <span class="title function_">test02_1</span><span class="params">(String username,String password)</span>&#123;</span><br><span class="line">      System.out.println(username);</span><br><span class="line">      System.out.println(password);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@RequestMapping(&quot;/test02_2&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ModelAndView <span class="title function_">test02_2</span><span class="params">(<span class="meta">@RequestParam(&quot;username&quot;)</span> String name,<span class="meta">@RequestParam(value = &quot;password&quot;,defaultValue = &quot;1234987&quot;)</span> String pwd)</span>&#123;</span><br><span class="line">      <span class="comment">//使用了@RequestParam的参数不能传空值</span></span><br><span class="line">      <span class="comment">// required:表示是否必须要传值</span></span><br><span class="line">      <span class="comment">// defaultValue:当没有该请求参数时,SpringMVC给请求参数的默认值</span></span><br><span class="line">      System.out.println(name);</span><br><span class="line">      System.out.println(pwd);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="复杂对象映射"><a href="#复杂对象映射" class="headerlink" title="复杂对象映射"></a>复杂对象映射</h2><p>当然在实际项目中，我们会有很多个参数，一般超过两个参数我们就要封装成对象，通过对象传参数，不然这么一个一个写会麻烦，代码冗余，不美观，不能复用</p>
+<p>此时能够自动把参数封装到形参的对象属性上：</p>
+<ol>
+<li>请求参数必须和对象的属性同名</li>
+<li>此时对象会直接放入request作用域中，名称为类型首字母小写</li>
+<li>@ModelAttribute设置请求参数绑定到对象中并传到视图页面的key值</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/test03&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ModelAndView <span class="title function_">test03</span><span class="params">(<span class="meta">@ModelAttribute(&quot;stu&quot;)</span> Student student)</span>&#123;</span><br><span class="line">    <span class="comment">/*可以使用对象作为方法的形参,同时接受接受前台的多个请求参数</span></span><br><span class="line"><span class="comment">      SpringMVC会基于同名匹配,将请求参数的值注入对应的对象中的属性中</span></span><br><span class="line"><span class="comment">      @ModelAttribute起名字key值*/</span></span><br><span class="line">      System.out.println(student);</span><br><span class="line">      <span class="type">ModelAndView</span> <span class="variable">mv</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelAndView</span>();</span><br><span class="line">      mv.setViewName(<span class="string">&quot;test2&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> mv;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果需要body里面json传参数需要在形参前面加上<code>@RequestBody</code> 会自动完成映射</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/register&quot;)</span></span><br><span class="line">   <span class="keyword">public</span> Result <span class="title function_">bodyParams</span><span class="params">(<span class="meta">@RequestBody</span> Users users)</span> &#123;</span><br><span class="line">       <span class="keyword">return</span> ResultResponse.success(users);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="数组和集合类型参数"><a href="#数组和集合类型参数" class="headerlink" title="数组和集合类型参数"></a>数组和集合类型参数</h2><p>当前台页面传来的参数是参数名相同，参数值不同的多个参数时，可以直接封装到方法的数组类型的形参中</p>
+<p>比如批量删除时传来的参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*对于参数名相同的多个请求参数,可以直接使用数组作为方法的形参接收</span></span><br><span class="line"><span class="comment">  可以使用对象中的集合属性接收*/</span></span><br><span class="line"><span class="meta">@DeleteMapping(&quot;/del&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Result <span class="title function_">listParams</span><span class="params">(String[] ids)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> ResultResponse.success(ids);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7943b66cb85b4acc8187f3ffb91797b7~tplv-k3u1fbpfcp-zoom-1.image"></p>
+<h2 id="Restful风格传参"><a href="#Restful风格传参" class="headerlink" title="Restful风格传参"></a>Restful风格传参</h2><p>Restful是一种软件架构风格，严格上说是一种编码风格，其充分利用 HTTP 协议本身语义从而提供了一组设计原则和约束条件。</p>
+<p>　　主要用于客户端和服务器交互类的软件，该风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制。 在后台，RequestMapping标签后，可以用{参数名}方式传参，同时需要在形参前加注解@PathVarible</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/delete/&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ModelAndView <span class="title function_">test4</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span>Long id)</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;delete&quot;</span>);</span><br><span class="line">    System.out.println(id);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="https://i.328888.xyz/2023/04/18/izHAT8.md.jpeg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="https://i.328888.xyz/2023/04/18/izHidv.md.jpeg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">三时博客</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+    <a href="/2023/04/18/%E9%9B%86%E5%90%88%E9%81%8D%E5%8E%86%E4%B8%8E%E5%BE%AA%E7%8E%AF%E5%A4%9A%E7%A7%8D%E6%96%B9%E5%BC%8Fclglzfvkq00090k6ocawg0azv.html" class="next-post btn btn-default" title='集合遍历与循环多种方式'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            集合遍历与循环多种方式</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#web%E6%8A%80%E6%9C%AF"><span class="toc-number">1.</span> <span class="toc-text">web技术</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E7%A7%8D%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">多种传参方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="toc-number">2.1.</span> <span class="toc-text">传统参数传递</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0%E6%98%A0%E5%B0%84"><span class="toc-number">2.2.</span> <span class="toc-text">简单类型参数映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%AF%B9%E8%B1%A1%E6%98%A0%E5%B0%84"><span class="toc-number">2.3.</span> <span class="toc-text">复杂对象映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%92%8C%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0"><span class="toc-number">2.4.</span> <span class="toc-text">数组和集合类型参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Restful%E9%A3%8E%E6%A0%BC%E4%BC%A0%E5%8F%82"><span class="toc-number">2.5.</span> <span class="toc-text">Restful风格传参</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+    访问量:
+    <strong id="busuanzi_value_site_pv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    &nbsp; | &nbsp;
+    访客数:
+    <strong id="busuanzi_value_site_uv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2023
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        程序员三时</a>
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
+
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.js"></script>
+<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="/js/clipboard_use.js"></script>
+</html>
